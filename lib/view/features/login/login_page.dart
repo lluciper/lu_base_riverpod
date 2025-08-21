@@ -11,8 +11,8 @@ import 'view_model/login_state.dart';
 import 'view_model/login_view_model.dart';
 
 final _provider = StateNotifierProvider.autoDispose<LoginViewModel, LoginState>(
-  (ref) => LoginViewModel(),
-);
+      (ref) => LoginViewModel(),
+    );
 
 class LoginPage extends BasePage {
   const LoginPage({super.key});
@@ -36,10 +36,7 @@ class _LoginPageState extends BasePageState<LoginPage, LoginViewModel> {
           const SizedBox(height: 64),
           Assets.imageFlutter.image(),
           const SizedBox(height: 16),
-          LoginPanel(
-            provider: _provider,
-            onPressLogin: onPressLogin,
-          ),
+          LoginPanel(provider: _provider, onPressLogin: onPressLogin),
           const SizedBox(height: 16),
           Text(
             S.current.language,
@@ -53,11 +50,13 @@ class _LoginPageState extends BasePageState<LoginPage, LoginViewModel> {
             children: [
               ElevatedButton(
                 child: Text(S.current.language_english),
-                onPressed: () => viewModel.onChangeLanguage(ref, SupportLocale.en),
+                onPressed: () =>
+                    viewModel.onChangeLanguage(ref, SupportLocale.en),
               ),
               ElevatedButton(
                 child: Text(S.current.language_vietnam),
-                onPressed: () => viewModel.onChangeLanguage(ref, SupportLocale.vn),
+                onPressed: () =>
+                    viewModel.onChangeLanguage(ref, SupportLocale.vn),
               ),
             ],
           ),
@@ -74,12 +73,20 @@ class _LoginPageState extends BasePageState<LoginPage, LoginViewModel> {
             children: [
               ElevatedButton(
                 child: Text(S.current.dark_mode),
-                onPressed: () => viewModel.onChangeThemeMode(ref, Brightness.dark),
+                onPressed: () =>
+                    viewModel.onChangeThemeMode(ref, Brightness.dark),
               ),
 
               ElevatedButton(
                 child: Text(S.current.light_mode),
-                onPressed: () => viewModel.onChangeThemeMode(ref, Brightness.light),
+                onPressed: () =>
+                    viewModel.onChangeThemeMode(ref, Brightness.light),
+              ),
+              ElevatedButton(
+                child: Text('S.current.light_mode'),
+                onPressed: () {
+                  appRouter.pop(true);
+                },
               ),
             ],
           ),

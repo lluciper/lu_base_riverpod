@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/index.dart';
 import '../index.dart';
 
-
 var injector = ProviderContainer();
 
 class Dependence {
@@ -27,8 +26,6 @@ class Dependence {
       baseUrl: appFlavor.baseUrl,
     );
 
-    final httpClient = HttpClient(appFlavor.baseUrl);
-
     final secureStorage = SecureStorage(const FlutterSecureStorage());
 
     // ignore: join_return_with_assignment
@@ -39,15 +36,9 @@ class Dependence {
         appLifecycleProvider.overrideWithValue(appLifecycle),
 
         repositoryProvider.overrideWithValue(
-          Repository(
-            Services(
-              dioClient,
-              httpClient,
-              sharedPreference,
-              secureStorage,
-            ),
-          ),
+          Repository(Services(dioClient, sharedPreference, secureStorage)),
         ),
+        secureStorageProvider.overrideWithValue(secureStorage),
       ],
     );
   }

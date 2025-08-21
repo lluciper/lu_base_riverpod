@@ -17,7 +17,6 @@ export 'services/services.dart';
 // HTTP Client services
 export 'services/http_client/api_constants.dart';
 export 'services/http_client/dio_client.dart';
-export 'services/http_client/http_client.dart';
 
 // HTTP Client interceptors
 export 'services/http_client/interceptor/dio_interceptor.dart';

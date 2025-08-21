@@ -37,7 +37,10 @@ class LoginViewModel extends BaseViewModel<LoginState> {
   }
 
   Future<LoginResponseModel?> onPressLogin(WidgetRef ref) async {
-    await repository.auth.login(const LoginRequestModel(email: 'asd', password: 'password'));
+    await repository.auth.login(
+      const LoginRequestModel(email: 'asd', password: 'password'),
+    );
     return null;
   }
 }
+   

@@ -1,12 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../services/services.dart';
 import 'auth_repository.dart';
 import 'home_repository.dart';
 
-final repositoryProvider = Provider<Repository>(
-  (ref) => throw UnimplementedError(),
-);
+part 'repository.g.dart';
+
+@riverpod
+Repository repository(Ref ref) => throw UnimplementedError();
 
 class Repository {
   Repository(Services services) {

@@ -2,13 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../utils/helpers/logger_helper.dart';
 import '../components/dependence.dart';
 
-final appLifecycleProvider = Provider<AppLifecycle>(
-  (ref) => throw UnimplementedError(),
-);
+part 'app_lifecycle.g.dart';
+
+@riverpod
+AppLifecycle appLifecycle(Ref ref) => throw UnimplementedError();
 
 class AppLifecycle {
   AppLifecycle();

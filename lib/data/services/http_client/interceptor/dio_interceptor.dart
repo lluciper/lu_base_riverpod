@@ -5,9 +5,7 @@ import 'package:dio/dio.dart';
 
 import '../../../../core/index.dart';
 import '../../../../utils/helpers/network_helper.dart';
-import '../../../models/core/api_response_model.dart';
-import '../../../repositories/repository.dart';
-import '../api_constants.dart';
+import '../../../index.dart';
 
 class DioInterceptor extends QueuedInterceptorsWrapper {
   DioInterceptor();
@@ -23,7 +21,9 @@ class DioInterceptor extends QueuedInterceptorsWrapper {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final isConnected = await NetworkHelper.checkConnectivity(baseUrl: options.baseUrl);
+    final isConnected = await NetworkHelper.checkConnectivity(
+      baseUrl: options.baseUrl,
+    );
     if (!isConnected) {
       handler.reject(
         DioException(
@@ -34,9 +34,13 @@ class DioInterceptor extends QueuedInterceptorsWrapper {
       return;
     }
 
-    final accessToken = injector.read(repositoryProvider).auth.getAccessToken();
     if (isAuthenticatedPath(options)) {
-      options.headers['Authorization'] = 'Bearer $accessToken';
+      final accessToken = await injector
+          .read(secureStorageProvider)
+          .getAccessToken();
+      if (accessToken != null && accessToken.isNotEmpty) {
+        options.headers['Authorization'] = 'Bearer $accessToken';
+      }
     }
 
     final Map<String, String> headers = {
@@ -63,9 +67,9 @@ class DioInterceptor extends QueuedInterceptorsWrapper {
         ),
       );
     }
-    if(response.statusCode == HttpStatus.ok) {
+    if (response.statusCode == HttpStatus.ok) {
       super.onResponse(response, handler);
-    }else {
+    } else {
       throw DioException(
         requestOptions: response.requestOptions,
         response: Response(
@@ -115,7 +119,10 @@ class DioInterceptor extends QueuedInterceptorsWrapper {
     if (err.type == DioExceptionType.connectionTimeout ||
         err.type == DioExceptionType.receiveTimeout) {
       handler.next(
-        DioException(requestOptions: requestOptions, type: DioExceptionType.connectionTimeout),
+        DioException(
+          requestOptions: requestOptions,
+          type: DioExceptionType.connectionTimeout,
+        ),
       );
       return;
     }
@@ -188,6 +195,6 @@ class DioInterceptor extends QueuedInterceptorsWrapper {
   //// If you want this functionality to work, then we need to ask the backend team to add the "x-api-response" param to the response headers,
   //// the above param needs to apply all the api that the app uses.
   bool _isResponseNotFromServer(Response? response) => false;
-  // !(response?.headers['x-api-response'].toString().contains('true') ??
+  ///// !(response?.headers['x-api-response'].toString().contains('true') ??
   //     false);
 }

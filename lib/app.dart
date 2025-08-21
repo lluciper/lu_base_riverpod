@@ -14,7 +14,8 @@ class App extends StatefulWidget {
   State<App> createState() => _AppState();
 }
 
-class _AppState extends State<App> with WidgetsBindingObserver, AppLifecycleMixin {
+class _AppState extends State<App>
+    with WidgetsBindingObserver, AppLifecycleMixin {
   final _appLifecycle = injector.read(appLifecycleProvider);
 
   @override
@@ -39,7 +40,7 @@ class _AppState extends State<App> with WidgetsBindingObserver, AppLifecycleMixi
   @override
   Widget build(BuildContext context) => Consumer(
     builder: (context, ref, child) => MaterialApp.router(
-      routerConfig: goRouter,
+      routerConfig: appRouter,
       locale: localeProvider.listen(ref, (locale) => locale),
       localizationsDelegates: const [
         S.delegate,
@@ -48,9 +49,7 @@ class _AppState extends State<App> with WidgetsBindingObserver, AppLifecycleMixi
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: SupportLocale.support,
-      theme: ThemeData(
-        brightness: themeProvider.listen(ref, (theme) => theme),
-      ),
+      theme: ThemeData(brightness: themeProvider.listen(ref, (theme) => theme)),
       builder: (context, widget) => getResponsiveWrapper(context, widget),
     ),
   );

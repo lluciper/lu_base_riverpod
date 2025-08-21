@@ -1,7 +1,15 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+import 'local_storage_key.dart';
+
+final secureStorageProvider = Provider<SecureStorage>(
+  (ref) => throw UnimplementedError('secureStorageProvider must be overridden'),
+);
+
+/// LocalAuthStorage centralizes all auth-related token persistence.
 class SecureStorage {
-  SecureStorage(this._secureStorage);
+  const SecureStorage(this._secureStorage);
 
   final FlutterSecureStorage _secureStorage;
 
@@ -18,5 +26,15 @@ class SecureStorage {
           isOk = true;
         });
     return isOk;
+  }
+
+  Future<bool> saveAccessToken(String token) =>
+      setString(LocalStorageKey.accessToken, token);
+
+  Future<String?> getAccessToken() => getString(LocalStorageKey.accessToken);
+
+  Future<bool> clearAccessToken() async {
+    await setString(LocalStorageKey.accessToken, '');
+    return true;
   }
 }

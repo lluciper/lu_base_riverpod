@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../index.dart';
 
-
 class LoadingWrapper extends ConsumerWidget {
   const LoadingWrapper({
     required this.provider,
@@ -30,7 +29,8 @@ class LoadingWrapper extends ConsumerWidget {
 }
 
 class LoadingWrapperViewModel extends BaseViewModel<bool> {
-  LoadingWrapperViewModel({@visibleForTesting bool? isShowing}) : super(isShowing ?? false);
+  LoadingWrapperViewModel({@visibleForTesting bool? isShowing})
+    : super(isShowing ?? false);
 
   void showLoading() {
     state = true;

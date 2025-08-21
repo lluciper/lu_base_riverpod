@@ -6,7 +6,7 @@ export 'base_dialog/dialog_platform.dart';
 export 'core/app_flavor.dart';
 export 'core/app_lifecycle.dart';
 export 'core/base_page.dart';
-export 'core/go_router.dart';
+export 'core/app_router.dart';
 export 'core/responsive_wrapper.dart';
 export 'core/locale_support.dart';
 export 'core/theme_support.dart';
