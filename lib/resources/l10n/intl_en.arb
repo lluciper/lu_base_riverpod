@@ -1,8 +1,12 @@
 {
   "@@locale": "en",
-  "hello": "Hello!",
-  "greeting": "Hi {name}!",
   "welcome": "Welcome to our app!",
+  "home_title": "Home",
+  "logout": "Log out",
+  "home_open_detail": "Open detail",
+  "detail_title": "Detail",
+  "detail_param": "Param: {id}",
+  "detail_no_param": "No param",
   "cancel_button_dialog": "CANCEL",
   "ok_button_dialog": "OK",
   "login_button": "Login",
@@ -17,12 +21,11 @@
   "network_error": "Network error. Please check your connection and try again.",
   "server_error": "Server error. Please try again later.",
   "timeout_error": "Request timed out. Please try again later.",
-  "language" : "Language",
+  "language": "Language",
   "language_english": "English",
   "language_vietnam": "Vietnamese",
   "theme_mode": "Theme mode",
   "dark_mode": "Dark",
   "light_mode": "Light",
-  "unknown_error": "An unknown error occurred. Please try again later.",
-  "not_found": "Not found."
+  "unknown_error": "An unknown error occurred. Please try again later."
 }

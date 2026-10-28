@@ -1,12 +1,17 @@
 l10n:
-	flutter pub global run intl_utils:generate
+	dart run intl_utils:generate
 
 gen:
-	flutter pub run build_runner build --delete-conflicting-outputs
+	dart run build_runner build
 
 pub_get: 
 	flutter pub get
 
 init: pub_get gen l10n
+
+# Same checks as CI (minus the generated-files diff).
+check:
+	dart analyze --fatal-infos
+	flutter test
 
 	

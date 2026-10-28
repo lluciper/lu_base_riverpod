@@ -4,9 +4,7 @@ part 'login_response_model.g.dart';
 
 @JsonSerializable()
 class LoginResponseModel {
-  LoginResponseModel({
-    required this.accessToken,
-  });
+  LoginResponseModel({required this.accessToken, this.refreshToken});
 
   factory LoginResponseModel.fromJson(Map<String, dynamic> json) =>
       _$LoginResponseModelFromJson(json);
@@ -14,8 +12,8 @@ class LoginResponseModel {
   @JsonKey(name: 'access_token')
   final String accessToken;
 
-  // @JsonKey(name: 'refresh_token')
-  // final String? refreshToken;
+  @JsonKey(name: 'refresh_token')
+  final String? refreshToken;
 
   Map<String, dynamic> toJson() => _$LoginResponseModelToJson(this);
 }

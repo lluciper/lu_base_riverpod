@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -54,21 +55,56 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Hello!`
-  String get hello {
-    return Intl.message('Hello!', name: 'hello', desc: '', args: []);
-  }
-
-  /// `Hi {name}!`
-  String greeting(Object name) {
-    return Intl.message('Hi $name!', name: 'greeting', desc: '', args: [name]);
-  }
-
   /// `Welcome to our app!`
   String get welcome {
     return Intl.message(
       'Welcome to our app!',
       name: 'welcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home_title {
+    return Intl.message('Home', name: 'home_title', desc: '', args: []);
+  }
+
+  /// `Log out`
+  String get logout {
+    return Intl.message('Log out', name: 'logout', desc: '', args: []);
+  }
+
+  /// `Open detail`
+  String get home_open_detail {
+    return Intl.message(
+      'Open detail',
+      name: 'home_open_detail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Detail`
+  String get detail_title {
+    return Intl.message('Detail', name: 'detail_title', desc: '', args: []);
+  }
+
+  /// `Param: {id}`
+  String detail_param(Object id) {
+    return Intl.message(
+      'Param: $id',
+      name: 'detail_param',
+      desc: '',
+      args: [id],
+    );
+  }
+
+  /// `No param`
+  String get detail_no_param {
+    return Intl.message(
+      'No param',
+      name: 'detail_no_param',
       desc: '',
       args: [],
     );
@@ -242,11 +278,6 @@ class S {
       desc: '',
       args: [],
     );
-  }
-
-  /// `Not found.`
-  String get not_found {
-    return Intl.message('Not found.', name: 'not_found', desc: '', args: []);
   }
 }
 

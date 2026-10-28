@@ -7,7 +7,21 @@
 
 # The following line activates a set of recommended lints for Flutter apps,
 # packages, and plugins designed to encourage good coding practices.
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
+    - lib/resources/generated/**
 include: package:flutter_lints/flutter.yaml
+
+# riverpod_lint 3.1+ runs as an analyzer plugin; it is inactive without this.
+plugins:
+  riverpod_lint: ^3.1.9
 
 linter:
   # The lint rules applied to this project can be customized in the

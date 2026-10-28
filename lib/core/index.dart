@@ -1,21 +1,14 @@
-// Base Dialog exports
-export 'base_dialog/base_dialog.dart';
-export 'base_dialog/dialog_platform.dart';
+export 'app_flavor.dart';
+export 'base_page.dart';
+export 'base_view_model.dart';
+export 'dependence.dart';
+export 'locale_support.dart';
+export 'refresh_service.dart';
+export 'theme_support.dart';
 
-// Core exports
-export 'core/app_flavor.dart';
-export 'core/app_lifecycle.dart';
-export 'core/base_page.dart';
-export 'core/app_router.dart';
-export 'core/responsive_wrapper.dart';
-export 'core/locale_support.dart';
-export 'core/theme_support.dart';
-
-// Components exports
-export 'components/dependence.dart';
-export 'components/refresh_service.dart';
-export 'components/visibility_wrapper.dart';
-
-// UI exports
-export 'ui/loading_wrapper.dart';
-export 'ui/progress_indicator_platform.dart';
+// Widgets
+export 'widgets/base_dialog.dart';
+export 'widgets/dialog_platform.dart';
+export 'widgets/loading_wrapper.dart';
+export 'widgets/progress_indicator_platform.dart';
+export 'widgets/visibility_wrapper.dart';

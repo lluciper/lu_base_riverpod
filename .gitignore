@@ -1,6 +1,5 @@
 # Miscellaneous
 *.class
-*.lock
 *.log
 *.pyc
 *.swp
@@ -9,7 +8,9 @@
 .buildlog/
 .history
 .svn/
-.vscode/
+.vscode/*
+# Shared run configurations (environments / flavors)
+!.vscode/launch.json
 
 # IntelliJ related
 *.iml
@@ -65,7 +66,6 @@ unlinked.ds
 unlinked_spec.ds
 
 # Web related
-lib/generated_plugin_registrant.dart
 
 # Symbolication related
 app.*.symbols
@@ -186,3 +186,6 @@ yarn-error.log*
 
 # Analysis
 .dart_tool/dartpad_metadata.json
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md

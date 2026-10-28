@@ -14,9 +14,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart' as _svg;
 import 'package:vector_graphics/vector_graphics.dart' as _vg;
 
-class Assets {
-  const Assets._();
-
+abstract final class Assets {
   /// File path: assets/image/flutter.png
   static const AssetGenImage imageFlutter = AssetGenImage(
     'assets/image/flutter.png',

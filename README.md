@@ -1,16 +1,25 @@
 # lubaseriverpod
 
-A new Flutter project.
+Base Flutter **MVVM + Riverpod 3** để khởi tạo app mới (go_router, dio + retrofit, freezed, i18n EN/VI).
 
-## Getting Started
+## Chạy
 
-This project is a starting point for a Flutter application.
+```bash
+make init     # pub get + sinh code + l10n
+make check    # analyze + test, giống CI
+```
 
-A few resources to get you started if this is your first Flutter project:
+Chạy theo môi trường: VS Code → **Run and Debug** → `dev|stg|prod iOS` / `dev|stg|prod Android`, hoặc:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```bash
+flutter run --flavor dev --dart-define-from-file=dart_defines/develop.json   # Android (bắt buộc --flavor)
+flutter run --dart-define-from-file=dart_defines/develop.json                # iOS, web
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Môi trường **dev** đăng nhập giả (chưa có API login): email hợp lệ bất kỳ + mật khẩu ≥ 8 ký tự.
+
+## Tài liệu
+
+- [CLAUDE.md](CLAUDE.md) — công nghệ, cấu trúc thư mục, quy tắc MVVM, cách test.
+- [PROJECT.md](PROJECT.md) — mục tiêu, phạm vi, backlog của dự án dựng trên base.
+- Skill Claude Code: `/project-setup` (khởi tạo dự án), `/feature-team` (feature mới), `/bugfix-team` (sửa lỗi).

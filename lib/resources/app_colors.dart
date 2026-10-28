@@ -25,7 +25,8 @@ class ColorsDefine {
 
   static const colorsDark = ColorsDefine(
     blueMain: Colors.blue,
-    background: Colors.black54,
+    // Opaque: a translucent page background shows the page below during transitions.
+    background: Color(0xFF121212),
     text: Colors.white,
     textLighter: Color(0xFF637180),
     primary: Color(0xFF056EDB),

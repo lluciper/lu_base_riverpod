@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lubaseriverpod/resources/generated/assets.gen.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../utils/extensions/extensions.dart';
+import '../../../app_router.dart';
 import '../../../core/index.dart';
+import '../../../resources/generated/assets.gen.dart';
 import '../../../resources/generated/l10n.dart';
 import '../../../resources/resources.dart';
-import 'components/login_panel.dart';
-import 'view_model/login_state.dart';
-import 'view_model/login_view_model.dart';
+import 'login_state.dart';
+import 'login_view_model.dart';
+import 'widgets/login_panel.dart';
 
-final _provider = StateNotifierProvider.autoDispose<LoginViewModel, LoginState>(
-      (ref) => LoginViewModel(),
-    );
+final _provider = NotifierProvider.autoDispose<LoginViewModel, LoginState>(
+  LoginViewModel.new,
+);
 
 class LoginPage extends BasePage {
-  const LoginPage({super.key});
+  const LoginPage({this.from, super.key});
+
+  /// The screen to open after login (see LoginRoute.from).
+  final String? from;
 
   @override
   BasePageState<LoginPage, LoginViewModel> createState() => _LoginPageState();
@@ -23,7 +27,7 @@ class LoginPage extends BasePage {
 
 class _LoginPageState extends BasePageState<LoginPage, LoginViewModel> {
   @override
-  LoginViewModel get viewModel => _provider.viewModel(ref);
+  ViewModelProvider<LoginViewModel, LoginState> get provider => _provider;
 
   @override
   Widget buildBody(BuildContext context) => SingleChildScrollView(
@@ -50,13 +54,11 @@ class _LoginPageState extends BasePageState<LoginPage, LoginViewModel> {
             children: [
               ElevatedButton(
                 child: Text(S.current.language_english),
-                onPressed: () =>
-                    viewModel.onChangeLanguage(ref, SupportLocale.en),
+                onPressed: () => viewModel.onChangeLanguage(SupportLocale.en),
               ),
               ElevatedButton(
                 child: Text(S.current.language_vietnam),
-                onPressed: () =>
-                    viewModel.onChangeLanguage(ref, SupportLocale.vn),
+                onPressed: () => viewModel.onChangeLanguage(SupportLocale.vn),
               ),
             ],
           ),
@@ -73,20 +75,12 @@ class _LoginPageState extends BasePageState<LoginPage, LoginViewModel> {
             children: [
               ElevatedButton(
                 child: Text(S.current.dark_mode),
-                onPressed: () =>
-                    viewModel.onChangeThemeMode(ref, Brightness.dark),
+                onPressed: () => viewModel.onChangeThemeMode(Brightness.dark),
               ),
 
               ElevatedButton(
                 child: Text(S.current.light_mode),
-                onPressed: () =>
-                    viewModel.onChangeThemeMode(ref, Brightness.light),
-              ),
-              ElevatedButton(
-                child: Text('S.current.light_mode'),
-                onPressed: () {
-                  appRouter.pop(true);
-                },
+                onPressed: () => viewModel.onChangeThemeMode(Brightness.light),
               ),
             ],
           ),
@@ -96,11 +90,19 @@ class _LoginPageState extends BasePageState<LoginPage, LoginViewModel> {
     ),
   );
 
+  /// `from` comes from a URL: only follow in-app paths, otherwise Home.
+  String get _nextLocation {
+    final from = widget.from;
+    return from != null && from.startsWith('/') && !from.startsWith('//')
+        ? from
+        : const HomeRoute().location;
+  }
+
   void onPressLogin() {
-    _provider
-        .viewModel(ref)
-        .onPressLogin(ref)
+    viewModel
+        .onPressLogin()
         .subscribeLoadingFullScreen(this)
+        .subscribeOnSuccess(this, success: (_) => context.go(_nextLocation))
         .subscribeHandleError(this);
   }
 }

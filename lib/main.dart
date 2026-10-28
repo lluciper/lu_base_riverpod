@@ -1,5 +1,4 @@
-import 'dart:async';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -7,21 +6,23 @@ import 'app.dart';
 import 'core/index.dart';
 import 'utils/index.dart';
 
-void main() {
-  runZonedGuarded(
-    () async {
-      WidgetsFlutterBinding.ensureInitialized();
+/// From `--dart-define-from-file=dart_defines/<env>.json` (see .vscode/launch.json);
+/// development when run without it.
+const _env = String.fromEnvironment('ENV', defaultValue: 'development');
 
-      injector = await Dependence.initDependence(AppFlavorValue.development);
-      runApp(
-        UncontrolledProviderScope(
-          container: injector,
-          child: App(appFlavor: AppFlavorValue.development),
-        ),
-      );
-    },
-    (error, stackTrace) {
-      LoggerHelper.error('$error', stackTrace: stackTrace);
-    },
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  FlutterError.onError = (details) {
+    FlutterError.presentError(details); // console output / red screen in debug
+    if (kReleaseMode) reportError(details.exception, details.stack);
+  };
+  WidgetsBinding.instance.platformDispatcher.onError = (error, stackTrace) {
+    reportError(error, stackTrace);
+    return true;
+  };
+
+  final container = await Dependence.initDependence(
+    AppFlavorValue.fromEnv(_env),
   );
+  runApp(UncontrolledProviderScope(container: container, child: const App()));
 }

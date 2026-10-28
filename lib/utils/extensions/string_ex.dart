@@ -8,7 +8,7 @@ extension StringExNullable on String? {
       this == null || this!.isEmpty || this!.trim().isEmpty;
 
   // ignore: force_null_safety
-  bool get isNotNullOrEmpty => this == null || this!.isNotEmpty;
+  bool get isNotNullOrEmpty => this != null && this!.isNotEmpty;
 }
 
 extension StringEx on String {

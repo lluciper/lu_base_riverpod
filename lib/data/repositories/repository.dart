@@ -1,22 +1,21 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../services/services.dart';
 import 'auth_repository.dart';
-import 'home_repository.dart';
+import 'demo_auth_repository.dart';
 
-part 'repository.g.dart';
+/// Overridden in `Dependence.initDependence`.
+final repositoryProvider = Provider<Repository>(
+  (ref) => throw UnimplementedError('repositoryProvider must be overridden'),
+);
 
-@riverpod
-Repository repository(Ref ref) => throw UnimplementedError();
-
+/// One field per domain repository (`repository.auth`, …).
 class Repository {
-  Repository(Services services) {
-    auth = AuthRepository(services);
-    home = HomeRepository(services);
-  }
+  /// [demoLogin]: log in without a backend (development, see DemoAuthRepository).
+  Repository(Services services, {bool demoLogin = false})
+    : auth = demoLogin
+          ? DemoAuthRepository(services)
+          : AuthRepository(services);
 
-  late AuthRepository auth;
-
-  late HomeRepository home;
+  final AuthRepository auth;
 }

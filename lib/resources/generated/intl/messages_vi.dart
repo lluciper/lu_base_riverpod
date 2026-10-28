@@ -20,12 +20,15 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'vi';
 
-  static String m0(name) => "Chào ${name}!";
+  static String m0(id) => "Tham số: ${id}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "cancel_button_dialog": MessageLookupByLibrary.simpleMessage("HỦY BỎ"),
     "dark_mode": MessageLookupByLibrary.simpleMessage("Tối"),
+    "detail_no_param": MessageLookupByLibrary.simpleMessage("Không có tham số"),
+    "detail_param": m0,
+    "detail_title": MessageLookupByLibrary.simpleMessage("Chi tiết"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "email_invalid": MessageLookupByLibrary.simpleMessage(
       "Vui lòng nhập địa chỉ email hợp lệ.",
@@ -39,17 +42,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "enter_password": MessageLookupByLibrary.simpleMessage(
       "Nhập mật khẩu của bạn",
     ),
-    "greeting": m0,
-    "hello": MessageLookupByLibrary.simpleMessage("Xin chào!"),
+    "home_open_detail": MessageLookupByLibrary.simpleMessage("Mở chi tiết"),
+    "home_title": MessageLookupByLibrary.simpleMessage("Trang chủ"),
     "language": MessageLookupByLibrary.simpleMessage("Ngôn ngữ"),
     "language_english": MessageLookupByLibrary.simpleMessage("Tiếng Anh"),
     "language_vietnam": MessageLookupByLibrary.simpleMessage("Tiếng Việt"),
     "light_mode": MessageLookupByLibrary.simpleMessage("Sáng"),
     "login_button": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
+    "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
     "network_error": MessageLookupByLibrary.simpleMessage(
       "Lỗi mạng. Vui lòng kiểm tra kết nối của bạn và thử lại.",
     ),
-    "not_found": MessageLookupByLibrary.simpleMessage("Không tìm thấy."),
     "ok_button_dialog": MessageLookupByLibrary.simpleMessage("OK"),
     "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
     "password_invalid": MessageLookupByLibrary.simpleMessage(
