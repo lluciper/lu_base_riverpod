@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../services/services.dart';
-import 'auth_repository.dart';
-import 'demo_auth_repository.dart';
+import 'auth/auth_repository.dart';
+import 'auth/demo_auth_repository.dart';
 
 /// Overridden in `Dependence.initDependence`.
 final repositoryProvider = Provider<Repository>(

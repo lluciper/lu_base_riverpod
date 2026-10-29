@@ -92,3 +92,4 @@ Bổ sung hoặc ghi đè quy tắc mặc định trong CLAUDE.md cho riêng d�
 | 2026-10-28 | BR-1: login xong đi tiếp tới đích deep link (`LoginRoute.from`) thay vì luôn về Home | Báo lỗi của người dùng | Claude |
 | 2026-10-28 | BR-3 sửa theo người dùng: refresh lỗi tạm thời (mạng/timeout/5xx) giữ phiên; 401 sau khi refresh thành công không đăng xuất | Người dùng | Claude |
 | 2026-10-28 | Sửa theo review độc lập (65/100): quyền INTERNET bản release, interceptor (forceLogout, retry FormData, đăng xuất giữa lúc refresh, dio ≥ 5.11), dọn code demo/chết + 10 dependency, commit lockfile, thông báo lỗi server, routerProvider + bỏ biến toàn cục, test App và cấu hình native | "Sửa đi và sau đó review lại" | Claude |
+| 2026-10-29 | `core/`, `data/`, `utils/` chia thư mục con theo chức năng (giống base Bloc); `view/` giữ nguyên; test theo cùng cấu trúc | Yêu cầu người dùng | Claude |
